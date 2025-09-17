@@ -125,11 +125,75 @@ greet();
 
 // function with user input:
 
-function mul(){
-    let num1 = parseInt(prompt("Enter first number: "));
-    let num2 = parseInt(prompt("Enter second number: "));
-    let result = num1 * num2;
-    console.log("The product is: " + result);
+// function mul(){
+//     let num1 = parseInt(prompt("Enter first number to multiply: "));
+//     let num2 = parseInt(prompt("Enter second number: "));
+//     let result = num1 * num2;
+//     console.log("The product is: " + result);
+// }
+
+// mul();
+
+// function div(){
+//     let num3 = parseInt(prompt("Enter first number to divide: "));
+//     let num4 = parseInt(prompt("Enter second number: "));
+//     let result = num3 / num4;
+//     console.log("The quotient is: " + result);
+// }
+
+// div();
+
+// // Function that returns a value:
+
+// function square(num){
+//     return num * num;
+// }
+// let result = square(4);
+// confirm("The square of 4 is: " + result);
+
+
+
+
+// function runprogram(){
+//     let fruits = ["apple", "banana", "mango"];
+//     let choice;
+
+//     while(true){
+//         choice = prompt("Add: Apple, Banana, Mango, or quit");
+//         if(choice.toLowerCase() === "quit"){
+//             console.log("Goodbye!");
+//             break; // stops the loop
+//         }
+//         if(fruits.includes(choice.toLowerCase())){
+//             console.log(choice + " added to the list.");
+//         }
+//         else{
+//             console.log(choice + " is not a valid option.");
+//         }
+//     }
+// }
+
+// runprogram();
+
+//practice:
+
+function runprogram(){
+    let lightsabers = ["blue", "green", "red", "yellow"];
+    let choice;
+
+    while(true){
+        choice = prompt("Turn on: Blue, Green, Red, Yellow, or quit");
+        if(choice.toLowerCase() === "quit"){
+            console.log("Goodbye!");
+            break; // stops the loop
+        }
+        if(lightsabers.includes(choice.toLowerCase())){
+            console.log(choice + " lightsaber turned on.");
+        }
+        else{
+            console.log(choice + " is not a valid option.");
+        }
+    }
 }
 
-mul();
+runprogram();
