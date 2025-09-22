@@ -1,0 +1,18 @@
+.page-section{
+    margin: 40px;
+    padding: 0px 20px;
+    border: 2px dashed black;
+}
+
+.first-section{
+    background-color: beige;
+}
+
+.second-section{
+    background-color: lightblue;
+}
+
+.section-title{
+    font-size: 24px;
+    text-decoration: underline;
+}
