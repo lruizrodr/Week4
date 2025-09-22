@@ -347,3 +347,86 @@
 //     }
 // }
 // countItems(items);
+
+
+//simple object with properties.
+
+let student = {
+    name: "Darth Vader",
+    age: "45",
+    class: "Jedi"
+}
+
+console.log("Name: " + student.name);
+console.log("Age: " + student.age);
+console.log("Class: " + student.class);
+
+// object with methods(functions)
+
+let vessel = {
+    class: "Starship Enterprise",
+    model: "D",
+    year: "2849",
+    
+    start: function(){
+        console.log("Starship Enterprise started...");
+    }
+}
+
+console.log(vessel.class);
+console.log(vessel.model);
+console.log(vessel.year);
+
+vessel.start();
+
+//object with nested objects
+
+// let person = {
+//     name: "James T. Kirk",
+//     age: "37",
+//     rank: "Captain",
+//     starship: {
+//         class: "Starship Enterprise",
+//         model: "D",
+//     }
+// }
+
+// console.log("Name: " + person.name);
+// console.log("Age: " + person.age);
+// console.log("Rank: " + person.rank);
+// console.log("Starship: " + person.starship.class);
+// console.log("Model: " + person.starship.model);
+
+// // Create an object with array properties and use function also... //fix this later.
+
+let turbines = {
+    mainEngine: {
+        turbine1: "left turbine",
+        turbine2: "right turbine",
+        turbine3: "center turbine",
+    }, // <-- comma added here
+    start: function() {
+        console.log("Engine started...");
+    }
+};
+
+turbines.start();                        
+console.log(turbines.mainEngine.turbine1); 
+console.log(turbines.turbine1);           
+console.log(turbines.mainEngine);         
+
+
+//teach example.
+let library = {
+    name: "city library",
+    books:["javacript basic, html, css, react"],
+    showbooks: function(){
+        console.log("Books available in + " + this.name + ":");
+            for (let i = 0; i < this.books.length; i++){
+                console.log("-" + this.books[i]);
+            }
+        }
+    }
+
+console.log(library.name);
+library.showbooks();

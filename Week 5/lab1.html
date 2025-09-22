@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <h1>Home Page</h1>
+   
+    <h1 id="title">Untitled</h1>
+    <button onclick="changetext()">Change title</button>
+    <script>
+        function changetext() {
+            let element = document.getElementById("title");
+            element.textContent = "Welcome to JavaScript DOM!!";
+        }
+    </script>
+    <p class="myText">Lorem ipsum dolor sit amet.</p>
+    <p class="myText">Lorem ipsum dolor sit amet.</p>
+    <button onclick="fmyText()">c/z change</button>
+    <script>
+        function fmyText() {
+            let element = document.getElementsByClassName ("myText");
+            element[0].style.color = "red";
+            element[0].style.fontSize = "25px";
+            
+        }
+    </script> -->
+
+    <!-- <script>
+        function changetext() {
+            let element = document.getElementById("title");
+            element.innerHTML = "text change using getElementbyID() method";
+        }
+    </script> -->
+
+    <!-- <p class="mytext">This is a paragraph.</p>
+    <p class="mytext">This is a paragraph.</p>
+    <button onclick="changetext()">Change Text</button>
+    <script>
+        function changetext() {
+            let element = document.getElementsByClassName ("mytext");
+            element[0].innerHTML = "First paragraph changed!";
+        }
+    </script>
+
+    <p>This is a paragraph</p>
+    <p>This is a paragraph</p>
+    <button onclick="changepara()">Change paragraph</button>
+
+    <script>
+        function changepara() {
+            let element = document.getElementsByTagName ("p");
+            element[1].innerHTML = "Second paragraph changed!";
+        }
+    </script> -->
+
+    <!-- <p id="demo">old text</p>
+    <button onclick="changetext()">Change</button>
+    <script>
+        document.getElementById("demo").innerHTML = "Next text using innerHTML property";
+    </script> -->
+
+    <!-- <p id="demo">old text</p>
+    <button onclick="changetext()">Change</button>
+    <script>
+        function changetext(){
+            document.getElementById ("demo").textContent = "Next text using innerHTML property";
+        }    
+    </script>
+
+    <div id="container"></div>
+    <button onclick="addElement()">Add element</button>
+
+    <script>
+        function addElement() {
+            let newpara = document.createElement("p");
+            newpara.textContent = "Lizard";
+            document.getElementById("container").appendChild(newpara);
+        }
+    </script>
+
+    <ul id="list">
+        <li>Item 1</li>
+        <li id="removeme">Item 2</li>
+        <li>Item 3</li>
+
+    </ul>
+    <button onclick="removeitem()">Remove me!</button>
+    <script>
+        function removeitem() {
+            let list = document.getElementById("list");
+            let item = document.getElementById("removeme");
+            list.removeChild(item);
+        }
+    </script> -->
+<!--<ul id="llist">
+        <li>Lizard 1</li>
+        <li>Lizard 2</li>
+        <li>Lizard 3</li>
+    </ul>
+    <button onclick="addLizard()">Add Lizard</button>
+    <button onclick="removeLizard()">Remove Lizard</button>
+<script>
+   function addLizard() {
+       let newLizard = document.createElement("li");
+       newLizard.textContent = "Lizard " + (document.getElementById("llist").childElementCount + 1);
+       document.getElementById("llist").appendChild(newLizard);
+   }
+
+   function removeLizard() {
+       let lastLizard = document.getElementById("llist").lastElementChild;
+       document.getElementById("llist").removeChild(lastLizard);
+   }
+</script> -->
+<ul id="fruits">
+    <li>Apple</li>
+    <li>Mango</li>
+    <li>Banana</li>
+</ul>
+<button onclick="replaceFruit()">Magic</button>
+<script>
+    function replaceFruit() {//ul -> fruits -> li -> banana (is 2) -> newFruit 
+        let fruits = document.getElementById("fruits"); 
+        let li = fruits.getElementsByTagName("li");
+        let newFruit = document.createElement("li");
+        newFruit.textContent = "Lizard";
+        fruits.replaceChild(newFruit, li[2]);
+    }
+
+    // OR
+
+    // function replaceFruit() {
+    //     document.getElementById("fruits").children[2].textContent = "Lizard";
+    // }
+    
+</script>
+
+
+
+
+
+
+<!-- <script src="lab1.js"></script>     -->
+</body>
+</html>
