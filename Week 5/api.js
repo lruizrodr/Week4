@@ -22,7 +22,7 @@ let person = {
 let jsonPerson = JSON.stringify(person);
 
 console.log(jsonString);
-// LIZARDS https://api.gbif.org/v1/species/search?q=lizard&highertaxon_key=715&limit=10
+
 document.getElementById("loadUserBtn").addEventListener("click", () => {
     fetch("https://jsonplaceholder.typicode.com/users").then((Response) => {
         return Response.json();
@@ -36,3 +36,22 @@ document.getElementById("loadUserBtn").addEventListener("click", () => {
     
 });
 
+let nameOfImage = null;
+
+document.getElementById("imageBtn").addEventListener("click", async () => {
+    let response = await fetch(`https://foodish-api.com/api/images/burger`);
+    let data = await response.json();
+    
+    console.log(data);
+    nameOfImage = data.image;  // Fixed
+
+    document.getElementById("image-name").textContent = data.image;
+
+    let image = document.getElementById("data-image");  // Fixed ID
+    image.setAttribute("src", data.image);
+    image.onload = () => {
+        console.log("Image loaded successfully!");
+    }
+
+    console.log(nameOfImage);
+});
