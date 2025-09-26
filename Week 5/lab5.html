@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container my-4">
+
+    <!-- W5D5-LAB -->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h1 class="card-title h4">W5D5-LAB</h1>
+        <button class="btn btn-primary mt-2" onclick="addSubject()">Add Subject</button>
+        <div id="output" class="mt-2"></div>
+    </div>
+
+    <!-- Hello Students, example 1 -->
+    <div class="card mb-4 p-3 shadow-sm">
+        <p id="message">Hello Students</p>
+        <button class="btn btn-primary mt-2" onclick="changeText()">Change Text</button>
+    </div>
+
+    <!-- Random Dog Image example 2-->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h1 class="card-title h4">Random Dog Image</h1>
+        <button class="btn btn-primary mt-2" onclick="getDogImage()">Can I pet dat dawg!?</button>
+        <div id="rdog" class="mt-2"></div>
+    </div>
+
+    <!-- Random Jokes lol wtf -->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h1 class="card-title h4">Random Jokes</h1>
+        <button class="btn btn-primary mt-2" onclick="showJoke()">Get Joke</button>
+        <div id="joke" class="mt-2"></div>
+    </div>
+
+    <!-- Random Cat example 4-->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h1 class="card-title h4">Random Cat</h1>
+        <button class="btn btn-primary mt-2" onclick="showCat()">Get Cat</button>
+        <div id="cat" class="mt-2"></div>
+    </div>
+
+    <!-- Unsolicited Advices ecample 5-->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h1 class="card-title h4">Unsolicited Advice</h1>
+        <button class="btn btn-primary mt-2" onclick="showAdvice()">Get Fact</button>
+        <div id="advice" class="mt-2"></div>
+    </div>
+
+    <!-- Predict Age by Name exercise 1-->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h1 class="card-title h4">Predict Age by Name</h1>
+        <form id="ageForm" class="d-flex gap-2">
+            <input type="text" id="nameInput" class="form-control" placeholder="Enter a name" required />
+            <button type="submit" class="btn btn-success">Predict Age</button>
+        </form>
+        <div id="result" class="mt-2"></div>
+    </div>
+
+    <!-- Random Cats Pics-->
+    <div class="card mb-4 p-3 shadow-sm">
+        <h1 class="card-title h4">Random Cat Image</h1>
+        <button class="btn btn-primary mt-2" onclick="showCatImage()">Get Cat Image</button>
+        <div id="catImageResult" class="mt-2"></div>
+    </div>
+
+    <!-- Pokemon -->
+    <div class="card mb-4 p-3 shadow-sm">
+    <h1 class="card-title h4">Random Pokémon</h1>
+    <button class="btn btn-primary mt-2" onclick="showRandomPokemon()">Get Pokémon</button>
+    <div id="pokemonResult" class="mt-2"></div>
+    </div>
+
+
+</div>
+<!---------------------------------------------Scripts------------------------------------------------->
+<script>
+/* Dog Image */
+async function getDogImage() {
+    try {
+        const response = await fetch('https://dog.ceo/api/breeds/image/random');
+        const data = await response.json();
+        document.getElementById("rdog").innerHTML = `<img src="${data.message}" alt="Random Dog Image" class="img-fluid"/>`;
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+/* Jokes */
+async function showJoke() {
+    try {
+        const res = await fetch('https://v2.jokeapi.dev/joke/Any');
+        const data = await res.json();
+        if (data.type === 'single') {
+            document.getElementById('joke').textContent = data.joke;
+        } else {
+            document.getElementById('joke').textContent = data.setup + " " + data.delivery;
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('joke').textContent = "Failed to fetch!";
+    }
+}
+
+/* Cat Facts */
+async function showCat() {
+    try {
+        const res = await fetch('https://meowfacts.herokuapp.com/');
+        const data = await res.json();
+        document.getElementById("cat").textContent = data.data[0];
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('cat').textContent = "Failed to fetch!";
+    }
+}
+
+/* Advice */
+async function showAdvice() {
+    try {
+        const res = await fetch('https://api.adviceslip.com/advice');
+        const data = await res.json();
+        document.getElementById("advice").textContent = data.slip.advice;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('advice').textContent = "Failed to fetch!";
+    }
+}
+
+/* Predict Age */
+document.getElementById('ageForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const name = document.getElementById('nameInput').value.trim();
+    if (!name) return;
+    try {
+        const res = await fetch(`https://api.agify.io?name=${encodeURIComponent(name)}`);
+        const data = await res.json();
+        document.getElementById('result').textContent = 
+            `The predicted age for "${data.name}" is ${data.age ?? "unknown"} (based on ${data.count ?? 0} records).`;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('result').textContent = "Failed to fetch age prediction!";
+    }
+});
+
+/* Random Population Pics */
+async function showCatImage() {
+    try {
+        const res = await fetch('https://api.thecatapi.com/v1/images/search');
+        const data = await res.json();
+        if (!data[0] || !data[0].url) {
+            document.getElementById('catImageResult').textContent = "No image found!";
+            return;
+        }
+        const imageUrl = data[0].url;
+        document.getElementById('catImageResult').innerHTML = `
+            <img src="${imageUrl}" alt="Random Cat" class="img-fluid rounded"/>`;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('catImageResult').textContent = "Failed to fetch cat image!";
+    }
+}
+
+/* Random Pokemon */
+async function showRandomPokemon() {
+    try {
+        const randomId = Math.floor(Math.random() * 1010) + 1;
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randomId}`);
+        const data = await res.json();
+        const name = data.name ?? "Unknown";
+        const sprite = data.sprites?.front_default ?? "";
+        const types = data.types.map(t => t.type.name).join(", ");
+        document.getElementById('pokemonResult').innerHTML = `
+            <p><strong>Name:</strong> ${name}</p>
+            <p><strong>Type(s):</strong> ${types}</p>
+            ${sprite ? `<img src="${sprite}" alt="${name}" class="img-fluid rounded mt-2"/>` : ""}
+        `;
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('pokemonResult').textContent = "Failed to fetch Pokémon!";
+    }
+}
+</script>
+
+
+
+
+
+
+
+<script src="lab5.js"></script>   
+</body>
+</html>
